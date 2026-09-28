@@ -4,6 +4,8 @@ const quizId = params.get("id");
 const attemptId = params.get("attemptId");
 
 let questions = [];
+let timerInterval;
+
 
 async function loadQuiz() {
 
@@ -20,6 +22,8 @@ async function loadQuiz() {
         document.getElementById("quizDescription").textContent =
             quiz.description || "";
 
+        startTimer(quiz.duration);
+
         const questionResponse =
             await fetch(`/api/quizzes/${quizId}/questions`);
 
@@ -33,6 +37,7 @@ async function loadQuiz() {
             "<p>Unable to load quiz.</p>";
     }
 }
+
 
 function displayQuestions() {
 
@@ -86,7 +91,45 @@ function displayQuestions() {
     });
 }
 
+
+function startTimer(duration) {
+
+    let remainingSeconds = duration * 60;
+
+    const timer =
+        document.getElementById("timer");
+
+    timerInterval = setInterval(() => {
+
+        const minutes =
+            Math.floor(remainingSeconds / 60);
+
+        const seconds =
+            remainingSeconds % 60;
+
+        timer.textContent =
+            `${minutes}:${seconds.toString().padStart(2, "0")}`;
+
+        if (remainingSeconds <= 0) {
+
+            clearInterval(timerInterval);
+
+            timer.textContent = "Time Up";
+
+            submitQuiz();
+        }
+
+        remainingSeconds--;
+
+    }, 1000);
+}
+
+
 async function submitQuiz() {
+
+    if (timerInterval) {
+        clearInterval(timerInterval);
+    }
 
     const answers = {};
 
@@ -98,7 +141,9 @@ async function submitQuiz() {
             );
 
         if (selected) {
-            answers[question.id] = selected.value;
+
+            answers[question.id] =
+                selected.value;
         }
     });
 
@@ -137,5 +182,6 @@ async function submitQuiz() {
             "Unable to submit quiz.";
     }
 }
+
 
 loadQuiz();
