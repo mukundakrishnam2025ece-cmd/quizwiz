@@ -85,4 +85,7 @@ public class AttemptService {
 
         return attemptRepository.save(attempt);
     }
+    public List<Attempt> getResultsByQuiz(Quiz quiz) {
+        return attemptRepository.findByQuiz(quiz);
+    }
 }

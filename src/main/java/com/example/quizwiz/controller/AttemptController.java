@@ -68,4 +68,11 @@ public class AttemptController {
 
         return attemptService.submitAttempt(id, request.getAnswers());
     }
+    @GetMapping("/quiz/{quizId}/results")
+    public List<Attempt> getQuizResults(@PathVariable Long quizId) {
+
+        Quiz quiz = quizService.getQuizById(quizId);
+
+        return attemptService.getResultsByQuiz(quiz);
+    }
 }
