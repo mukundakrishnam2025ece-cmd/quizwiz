@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QuizWiz - Result</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>QuizWiz</h1>
+
+    <div class="card">
+
+        <h2>Quiz Result</h2>
+
+        <p id="quizTitle">Loading...</p>
+
+        <h2 id="score">Loading...</h2>
+
+        <p id="status"></p>
+
+        <button onclick="window.location.href='index.html'">
+            Back to Quizzes
+        </button>
+
+    </div>
+
+</div>
+
+<script>
+
+    async function loadResult() {
+
+        const params =
+            new URLSearchParams(window.location.search);
+
+        const attemptId =
+            params.get("attemptId");
+
+        try {
+
+            const response =
+                await fetch(`/api/attempts/${attemptId}`);
+
+            const attempt =
+                await response.json();
+
+            document.getElementById("quizTitle").textContent =
+                `Quiz: ${attempt.quiz.title}`;
+
+            document.getElementById("score").textContent =
+                `Score: ${attempt.score}`;
+
+            document.getElementById("status").textContent =
+                `Status: ${attempt.status}`;
+
+        } catch (error) {
+
+            document.getElementById("score").textContent =
+                "Unable to load result.";
+
+        }
+    }
+
+    loadResult();
+
+</script>
+
+</body>
+</html>

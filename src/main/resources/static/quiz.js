@@ -176,11 +176,24 @@ async function submitQuiz() {
         document.getElementById("result").textContent =
             `Quiz submitted! Score: ${result.score} / ${questions.length}`;
 
+        document.getElementById("submitButton").style.display =
+            "none";
+
+        document.getElementById("resultButton").style.display =
+            "inline-block";
+
     } catch (error) {
 
         document.getElementById("result").textContent =
             "Unable to submit quiz.";
     }
+}
+
+
+function viewResult() {
+
+    window.location.href =
+        `result.html?attemptId=${attemptId}`;
 }
 
 

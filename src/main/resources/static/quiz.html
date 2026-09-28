@@ -24,9 +24,17 @@
 
         <div id="questions"></div>
 
-        <button onclick="submitQuiz()">Submit Quiz</button>
+        <button id="submitButton" onclick="submitQuiz()">
+            Submit Quiz
+        </button>
 
-        <p id="result"></p>
+        <div id="result"></div>
+
+        <button id="resultButton"
+                style="display:none;"
+                onclick="viewResult()">
+            View Result
+        </button>
 
     </div>
 
