@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QuizWiz - Student</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>QuizWiz</h1>
+
+    <div class="card">
+
+        <h2>Student Details</h2>
+
+        <label>Student ID</label>
+        <input type="number" id="studentId" placeholder="Enter Student ID">
+
+        <br><br>
+
+        <button onclick="startQuiz()">Start Quiz</button>
+
+        <p id="message"></p>
+
+    </div>
+
+</div>
+
+<script>
+
+    async function startQuiz() {
+
+        const studentId =
+            document.getElementById("studentId").value;
+
+        const quizId =
+            new URLSearchParams(window.location.search).get("id");
+
+        if (!studentId) {
+            document.getElementById("message").textContent =
+                "Please enter Student ID";
+            return;
+        }
+
+        try {
+
+            const response = await fetch("/api/attempts/start", {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    studentId: Number(studentId),
+                    quizId: Number(quizId)
+                })
+            });
+
+            const attempt = await response.json();
+
+            if (!response.ok) {
+                document.getElementById("message").textContent =
+                    attempt.message || "Unable to start quiz";
+                return;
+            }
+
+            window.location.href =
+                `quiz.html?id=${quizId}&attemptId=${attempt.id}`;
+
+        } catch (error) {
+
+            document.getElementById("message").textContent =
+                "Unable to connect to server";
+        }
+    }
+
+</script>
+
+</body>
+</html>

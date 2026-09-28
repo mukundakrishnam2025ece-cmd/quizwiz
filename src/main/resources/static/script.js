@@ -41,7 +41,8 @@ async function loadQuizzes() {
 }
 
 function startQuiz(id) {
-    window.location.href = `quiz.html?id=${id}`;
+    window.location.href = `student.html?id=${id}`;
+
 }
 
 loadQuizzes();
