@@ -1,6 +1,7 @@
 package com.example.quizwiz.service;
 
 import com.example.quizwiz.entity.Question;
+import com.example.quizwiz.entity.Quiz;
 import com.example.quizwiz.repository.QuestionRepository;
 import org.springframework.stereotype.Service;
 
@@ -26,5 +27,9 @@ public class QuestionService {
     public Question getQuestionById(Long id) {
         return questionRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Question not found"));
+    }
+
+    public void deleteByQuiz(Quiz quiz) {
+        questionRepository.deleteByQuiz(quiz);
     }
 }

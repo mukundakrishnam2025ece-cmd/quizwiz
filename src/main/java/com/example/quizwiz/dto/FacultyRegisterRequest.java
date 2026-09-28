@@ -4,7 +4,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-public class StudentRequest {
+public class FacultyRegisterRequest {
 
     @NotBlank
     private String name;
@@ -14,14 +14,8 @@ public class StudentRequest {
     private String email;
 
     @NotBlank
-    private String registerNumber;
-
-    @NotBlank
     @Size(min = 8, max = 72)
     private String password;
-
-    public StudentRequest() {
-    }
 
     public String getName() {
         return name;
@@ -37,14 +31,6 @@ public class StudentRequest {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getRegisterNumber() {
-        return registerNumber;
-    }
-
-    public void setRegisterNumber(String registerNumber) {
-        this.registerNumber = registerNumber;
     }
 
     public String getPassword() {

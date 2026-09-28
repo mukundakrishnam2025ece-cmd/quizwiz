@@ -1,5 +1,6 @@
 package com.example.quizwiz.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
@@ -20,6 +21,10 @@ public class Quiz {
     private int duration;
 
     private LocalDateTime createdAt;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "faculty_id")
+    private Faculty owner;
 
     public Quiz() {
     }
@@ -69,5 +74,14 @@ public class Quiz {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    @JsonIgnore
+    public Faculty getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Faculty owner) {
+        this.owner = owner;
     }
 }

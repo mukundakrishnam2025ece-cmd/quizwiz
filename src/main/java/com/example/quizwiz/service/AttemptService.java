@@ -33,6 +33,14 @@ public class AttemptService {
         return attemptRepository.findAll();
     }
 
+    public List<Attempt> getAttemptsByStudent(Student student) {
+        return attemptRepository.findByStudent(student);
+    }
+
+    public List<Attempt> getAttemptsForQuizzes(List<Quiz> quizzes) {
+        return quizzes.isEmpty() ? List.of() : attemptRepository.findByQuizIn(quizzes);
+    }
+
     public Attempt getAttemptById(Long id) {
         return attemptRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Attempt not found"));
@@ -97,5 +105,9 @@ public class AttemptService {
 
     public List<Attempt> getResultsByQuiz(Quiz quiz) {
         return attemptRepository.findByQuiz(quiz);
+    }
+
+    public void deleteByQuiz(Quiz quiz) {
+        attemptRepository.deleteByQuiz(quiz);
     }
 }

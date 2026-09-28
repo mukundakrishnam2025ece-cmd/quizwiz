@@ -1,93 +1,93 @@
-body {
-    font-family: Arial, sans-serif;
-    background: #f4f6f8;
-    margin: 0;
-    padding: 40px;
-}
+/*body {*/
+/*    font-family: Arial, sans-serif;*/
+/*    background: #f4f6f8;*/
+/*    margin: 0;*/
+/*    padding: 40px;*/
+/*}*/
 
-.container {
-    max-width: 900px;
-    margin: auto;
-}
+/*.container {*/
+/*    max-width: 900px;*/
+/*    margin: auto;*/
+/*}*/
 
-h1 {
-    text-align: center;
-    color: #1f2937;
-}
+/*h1 {*/
+/*    text-align: center;*/
+/*    color: #1f2937;*/
+/*}*/
 
-.subtitle {
-    text-align: center;
-    color: #6b7280;
-}
+/*.subtitle {*/
+/*    text-align: center;*/
+/*    color: #6b7280;*/
+/*}*/
 
-.card {
-    background: white;
-    padding: 25px;
-    margin-top: 30px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
+/*.card {*/
+/*    background: white;*/
+/*    padding: 25px;*/
+/*    margin-top: 30px;*/
+/*    border-radius: 10px;*/
+/*    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);*/
+/*}*/
 
-.quiz {
-    border: 1px solid #ddd;
-    padding: 20px;
-    margin-top: 15px;
-    border-radius: 8px;
-    background: #fafafa;
-}
+/*.quiz {*/
+/*    border: 1px solid #ddd;*/
+/*    padding: 20px;*/
+/*    margin-top: 15px;*/
+/*    border-radius: 8px;*/
+/*    background: #fafafa;*/
+/*}*/
 
-.quiz h3 {
-    margin-top: 0;
-    color: #1f2937;
-}
+/*.quiz h3 {*/
+/*    margin-top: 0;*/
+/*    color: #1f2937;*/
+/*}*/
 
-label {
-    display: block;
-    padding: 8px;
-    margin: 5px 0;
-    cursor: pointer;
-    border-radius: 5px;
-}
+/*label {*/
+/*    display: block;*/
+/*    padding: 8px;*/
+/*    margin: 5px 0;*/
+/*    cursor: pointer;*/
+/*    border-radius: 5px;*/
+/*}*/
 
-label:hover {
-    background: #eef2ff;
-}
+/*label:hover {*/
+/*    background: #eef2ff;*/
+/*}*/
 
-input[type="number"] {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 10px;
-    margin-top: 8px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-}
+/*input[type="number"] {*/
+/*    width: 100%;*/
+/*    box-sizing: border-box;*/
+/*    padding: 10px;*/
+/*    margin-top: 8px;*/
+/*    border: 1px solid #ccc;*/
+/*    border-radius: 6px;*/
+/*}*/
 
-input[type="radio"] {
-    margin-right: 8px;
-}
+/*input[type="radio"] {*/
+/*    margin-right: 8px;*/
+/*}*/
 
-button {
-    background: #2563eb;
-    color: white;
-    border: none;
-    padding: 10px 18px;
-    margin-top: 15px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 15px;
-}
+/*button {*/
+/*    background: #2563eb;*/
+/*    color: white;*/
+/*    border: none;*/
+/*    padding: 10px 18px;*/
+/*    margin-top: 15px;*/
+/*    border-radius: 6px;*/
+/*    cursor: pointer;*/
+/*    font-size: 15px;*/
+/*}*/
 
-button:hover {
-    background: #1d4ed8;
-}
+/*button:hover {*/
+/*    background: #1d4ed8;*/
+/*}*/
 
-#timer {
-    color: #dc2626;
-    font-size: 18px;
-}
+/*#timer {*/
+/*    color: #dc2626;*/
+/*    font-size: 18px;*/
+/*}*/
 
-#result {
-    margin-top: 20px;
-    font-size: 18px;
-    font-weight: bold;
-}
+/*#result {*/
+/*    margin-top: 20px;*/
+/*    font-size: 18px;*/
+/*    font-weight: bold;*/
+/*}*/

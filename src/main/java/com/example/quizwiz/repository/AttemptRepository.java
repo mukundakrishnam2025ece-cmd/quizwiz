@@ -10,4 +10,7 @@ public interface AttemptRepository extends JpaRepository<Attempt, Long> {
 
     boolean existsByStudentAndQuiz(Student student, Quiz quiz);
     List<Attempt> findByQuiz(Quiz quiz);
+    List<Attempt> findByStudent(Student student);
+    List<Attempt> findByQuizIn(List<Quiz> quizzes);
+    void deleteByQuiz(Quiz quiz);
 }

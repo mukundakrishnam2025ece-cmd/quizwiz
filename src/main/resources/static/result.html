@@ -1,72 +1,72 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>QuizWiz - Result</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--    <title>QuizWiz - Result</title>-->
+<!--    <link rel="stylesheet" href="style.css">-->
+<!--</head>-->
 
-<body>
+<!--<body>-->
 
-<div class="container">
+<!--<div class="container">-->
 
-    <h1>QuizWiz</h1>
+<!--    <h1>QuizWiz</h1>-->
 
-    <div class="card">
+<!--    <div class="card">-->
 
-        <h2>Quiz Result</h2>
+<!--        <h2>Quiz Result</h2>-->
 
-        <p id="quizTitle">Loading...</p>
+<!--        <p id="quizTitle">Loading...</p>-->
 
-        <h2 id="score">Loading...</h2>
+<!--        <h2 id="score">Loading...</h2>-->
 
-        <p id="status"></p>
+<!--        <p id="status"></p>-->
 
-        <button onclick="window.location.href='index.html'">
-            Back to Quizzes
-        </button>
+<!--        <button onclick="window.location.href='index.html'">-->
+<!--            Back to Quizzes-->
+<!--        </button>-->
 
-    </div>
+<!--    </div>-->
 
-</div>
+<!--</div>-->
 
-<script>
+<!--<script>-->
 
-    async function loadResult() {
+<!--    async function loadResult() {-->
 
-        const params =
-            new URLSearchParams(window.location.search);
+<!--        const params =-->
+<!--            new URLSearchParams(window.location.search);-->
 
-        const attemptId =
-            params.get("attemptId");
+<!--        const attemptId =-->
+<!--            params.get("attemptId");-->
 
-        try {
+<!--        try {-->
 
-            const response =
-                await fetch(`/api/attempts/${attemptId}`);
+<!--            const response =-->
+<!--                await fetch(`/api/attempts/${attemptId}`);-->
 
-            const attempt =
-                await response.json();
+<!--            const attempt =-->
+<!--                await response.json();-->
 
-            document.getElementById("quizTitle").textContent =
-                `Quiz: ${attempt.quiz.title}`;
+<!--            document.getElementById("quizTitle").textContent =-->
+<!--                `Quiz: ${attempt.quiz.title}`;-->
 
-            document.getElementById("score").textContent =
-                `Score: ${attempt.score}`;
+<!--            document.getElementById("score").textContent =-->
+<!--                `Score: ${attempt.score}`;-->
 
-            document.getElementById("status").textContent =
-                `Status: ${attempt.status}`;
+<!--            document.getElementById("status").textContent =-->
+<!--                `Status: ${attempt.status}`;-->
 
-        } catch (error) {
+<!--        } catch (error) {-->
 
-            document.getElementById("score").textContent =
-                "Unable to load result.";
+<!--            document.getElementById("score").textContent =-->
+<!--                "Unable to load result.";-->
 
-        }
-    }
+<!--        }-->
+<!--    }-->
 
-    loadResult();
+<!--    loadResult();-->
 
-</script>
+<!--</script>-->
 
-</body>
-</html>
+<!--</body>-->
+<!--</html>-->

@@ -1,11 +1,15 @@
 package com.example.quizwiz.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "students")
-public class Student {
+@Table(name = "faculty")
+public class Faculty {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,22 +21,16 @@ public class Student {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false, unique = true)
-    private String registerNumber;
-
-    @Column(unique = true, length = 12)
-    private String studentCode;
-
-    @Column(length = 60)
+    @Column(nullable = false)
     private String passwordHash;
 
-    public Student() {
+    public Faculty() {
     }
 
-    public Student(String name, String email, String registerNumber) {
+    public Faculty(String name, String email, String passwordHash) {
         this.name = name;
         this.email = email;
-        this.registerNumber = registerNumber;
+        this.passwordHash = passwordHash;
     }
 
     public Long getId() {
@@ -59,23 +57,6 @@ public class Student {
         this.email = email;
     }
 
-    public String getRegisterNumber() {
-        return registerNumber;
-    }
-
-    public void setRegisterNumber(String registerNumber) {
-        this.registerNumber = registerNumber;
-    }
-
-    public String getStudentCode() {
-        return studentCode;
-    }
-
-    public void setStudentCode(String studentCode) {
-        this.studentCode = studentCode;
-    }
-
-    @JsonIgnore
     public String getPasswordHash() {
         return passwordHash;
     }
