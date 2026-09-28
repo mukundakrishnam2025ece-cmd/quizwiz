@@ -1,6 +1,7 @@
 package com.example.quizwiz.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 
 public class QuestionRequest {
 
@@ -20,6 +21,7 @@ public class QuestionRequest {
     private String optionD;
 
     @NotBlank
+    @Pattern(regexp = "[ABCDabcd]", message = "Correct option must be A, B, C or D")
     private String correctOption;
 
     public QuestionRequest() {
