@@ -2,10 +2,10 @@ package com.example.quizwiz.service;
 
 import com.example.quizwiz.entity.Attempt;
 import com.example.quizwiz.entity.Question;
+import com.example.quizwiz.entity.Quiz;
+import com.example.quizwiz.entity.Student;
 import com.example.quizwiz.repository.AttemptRepository;
 import com.example.quizwiz.repository.QuestionRepository;
-import com.example.quizwiz.entity.Student;
-import com.example.quizwiz.entity.Quiz;
 
 import org.springframework.stereotype.Service;
 
@@ -38,6 +38,10 @@ public class AttemptService {
                 .orElseThrow(() -> new RuntimeException("Attempt not found"));
     }
 
+    public boolean hasAlreadyAttempted(Student student, Quiz quiz) {
+        return attemptRepository.existsByStudentAndQuiz(student, quiz);
+    }
+
     public Attempt submitAttempt(Long id, Map<Long, String> answers) {
 
         Attempt attempt = getAttemptById(id);
@@ -49,9 +53,12 @@ public class AttemptService {
         LocalDateTime now = LocalDateTime.now();
 
         long elapsedMinutes =
-                java.time.Duration.between(attempt.getStartedAt(), now).toMinutes();
+                java.time.Duration.between(
+                        attempt.getStartedAt(),
+                        now
+                ).toMinutes();
 
-        if (elapsedMinutes > attempt.getQuiz().getDuration()) {
+        if (elapsedMinutes >= attempt.getQuiz().getDuration()) {
 
             attempt.setSubmittedAt(now);
             attempt.setStatus("EXPIRED");
@@ -74,7 +81,9 @@ public class AttemptService {
             String answer = answers.get(question.getId());
 
             if (answer != null &&
-                    answer.equalsIgnoreCase(question.getCorrectOption())) {
+                    answer.equalsIgnoreCase(
+                            question.getCorrectOption())) {
+
                 score++;
             }
         }
@@ -85,6 +94,7 @@ public class AttemptService {
 
         return attemptRepository.save(attempt);
     }
+
     public List<Attempt> getResultsByQuiz(Quiz quiz) {
         return attemptRepository.findByQuiz(quiz);
     }
