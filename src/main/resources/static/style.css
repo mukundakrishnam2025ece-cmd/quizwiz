@@ -30,13 +30,40 @@ h1 {
 
 .quiz {
     border: 1px solid #ddd;
-    padding: 15px;
+    padding: 20px;
     margin-top: 15px;
     border-radius: 8px;
+    background: #fafafa;
 }
 
 .quiz h3 {
     margin-top: 0;
+    color: #1f2937;
+}
+
+label {
+    display: block;
+    padding: 8px;
+    margin: 5px 0;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+label:hover {
+    background: #eef2ff;
+}
+
+input[type="number"] {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    margin-top: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+input[type="radio"] {
+    margin-right: 8px;
 }
 
 button {
@@ -44,10 +71,23 @@ button {
     color: white;
     border: none;
     padding: 10px 18px;
+    margin-top: 15px;
     border-radius: 6px;
     cursor: pointer;
+    font-size: 15px;
 }
 
 button:hover {
     background: #1d4ed8;
+}
+
+#timer {
+    color: #dc2626;
+    font-size: 18px;
+}
+
+#result {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
 }
