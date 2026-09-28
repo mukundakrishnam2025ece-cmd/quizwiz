@@ -37,6 +37,9 @@ public class AttemptController {
 
         Student student = studentService.getStudentById(request.getStudentId());
         Quiz quiz = quizService.getQuizById(request.getQuizId());
+        if (attemptService.hasAlreadyAttempted(student, quiz)) {
+            throw new RuntimeException("Student has already attempted this quiz");
+        }
 
         Attempt attempt = new Attempt();
 

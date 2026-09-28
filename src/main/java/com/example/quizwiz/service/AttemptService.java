@@ -4,6 +4,8 @@ import com.example.quizwiz.entity.Attempt;
 import com.example.quizwiz.entity.Question;
 import com.example.quizwiz.repository.AttemptRepository;
 import com.example.quizwiz.repository.QuestionRepository;
+import com.example.quizwiz.entity.Student;
+import com.example.quizwiz.entity.Quiz;
 
 import org.springframework.stereotype.Service;
 
@@ -65,5 +67,8 @@ public class AttemptService {
         attempt.setStatus("SUBMITTED");
 
         return attemptRepository.save(attempt);
+    }
+    public boolean hasAlreadyAttempted(Student student, Quiz quiz) {
+        return attemptRepository.existsByStudentAndQuiz(student, quiz);
     }
 }
