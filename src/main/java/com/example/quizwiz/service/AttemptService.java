@@ -42,6 +42,23 @@ public class AttemptService {
 
         Attempt attempt = getAttemptById(id);
 
+        if ("SUBMITTED".equals(attempt.getStatus())) {
+            throw new RuntimeException("Attempt already submitted");
+        }
+
+        LocalDateTime now = LocalDateTime.now();
+
+        long elapsedMinutes =
+                java.time.Duration.between(attempt.getStartedAt(), now).toMinutes();
+
+        if (elapsedMinutes > attempt.getQuiz().getDuration()) {
+
+            attempt.setSubmittedAt(now);
+            attempt.setStatus("EXPIRED");
+
+            return attemptRepository.save(attempt);
+        }
+
         List<Question> questions =
                 questionRepository.findAll()
                         .stream()
@@ -63,12 +80,9 @@ public class AttemptService {
         }
 
         attempt.setScore(score);
-        attempt.setSubmittedAt(LocalDateTime.now());
+        attempt.setSubmittedAt(now);
         attempt.setStatus("SUBMITTED");
 
         return attemptRepository.save(attempt);
-    }
-    public boolean hasAlreadyAttempted(Student student, Quiz quiz) {
-        return attemptRepository.existsByStudentAndQuiz(student, quiz);
     }
 }
