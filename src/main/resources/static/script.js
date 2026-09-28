@@ -41,7 +41,7 @@ async function loadQuizzes() {
 }
 
 function startQuiz(id) {
-    alert("Quiz ID " + id + " selected.");
+    window.location.href = `quiz.html?id=${id}`;
 }
 
 loadQuizzes();
