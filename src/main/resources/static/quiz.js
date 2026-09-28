@@ -1,6 +1,7 @@
 const params = new URLSearchParams(window.location.search);
 
 const quizId = params.get("id");
+const attemptId = params.get("attemptId");
 
 let questions = [];
 
@@ -85,9 +86,9 @@ function displayQuestions() {
     });
 }
 
-function submitQuiz() {
+async function submitQuiz() {
 
-    let score = 0;
+    const answers = {};
 
     questions.forEach(question => {
 
@@ -96,16 +97,45 @@ function submitQuiz() {
                 `input[name="question-${question.id}"]:checked`
             );
 
-        if (selected &&
-            selected.value.toUpperCase() ===
-            question.correctOption.toUpperCase()) {
-
-            score++;
+        if (selected) {
+            answers[question.id] = selected.value;
         }
     });
 
-    document.getElementById("result").textContent =
-        `Score: ${score} / ${questions.length}`;
+    try {
+
+        const response =
+            await fetch(`/api/attempts/${attemptId}/submit`, {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    answers: answers
+                })
+            });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+
+            document.getElementById("result").textContent =
+                result.message || "Unable to submit quiz";
+
+            return;
+        }
+
+        document.getElementById("result").textContent =
+            `Quiz submitted! Score: ${result.score} / ${questions.length}`;
+
+    } catch (error) {
+
+        document.getElementById("result").textContent =
+            "Unable to submit quiz.";
+    }
 }
 
 loadQuiz();
