@@ -7,6 +7,7 @@ import com.example.quizwiz.entity.Quiz;
 import com.example.quizwiz.service.AttemptService;
 import com.example.quizwiz.service.StudentService;
 import com.example.quizwiz.service.QuizService;
+import com.example.quizwiz.dto.SubmitAttemptRequest;
 
 import jakarta.validation.Valid;
 
@@ -56,5 +57,12 @@ public class AttemptController {
     @GetMapping("/{id}")
     public Attempt getAttemptById(@PathVariable Long id) {
         return attemptService.getAttemptById(id);
+    }
+    @PostMapping("/{id}/submit")
+    public Attempt submitAttempt(
+            @PathVariable Long id,
+            @RequestBody SubmitAttemptRequest request) {
+
+        return attemptService.submitAttempt(id, request.getAnswers());
     }
 }
